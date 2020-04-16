@@ -2,6 +2,7 @@
 
 library(readr)
 library(dplyr)
+library(tidyr)
 library(stringr)
 
 
@@ -274,7 +275,7 @@ Corrector <- R6::R6Class("Corrector", public = list(
     self$countries <- private$cases %>% pull(`Country/Region`) %>% unique %>% sort
     
     
-    private$demo <- read_csv("../kaggle/input/world_demographics.csv", col_types = cols(`Value Footnotes` = col_character())) %>% mutate(`Country or Area` = `Country or Area` %>% str_replace("Viet Nam", "Vietnam") %>% str_replace("United States of America", "USA") %>% str_replace("United Kingdom of Great Britain and Northern Ireland", "United Kingdom") %>% str_replace("Republic of Korea", "South Korea") %>% str_replace("Venezuela (Bolivarian Republic of)", "Venezuela") %>% str_replace("Iran (Islamic Republic of)", "Iran"))
+    private$demo <- read_csv("./world_demographics.csv", col_types = cols(`Value Footnotes` = col_character())) %>% mutate(`Country or Area` = `Country or Area` %>% str_replace("Viet Nam", "Vietnam") %>% str_replace("United States of America", "USA") %>% str_replace("United Kingdom of Great Britain and Northern Ireland", "United Kingdom") %>% str_replace("Republic of Korea", "South Korea") %>% str_replace("Venezuela (Bolivarian Republic of)", "Venezuela") %>% str_replace("Iran (Islamic Republic of)", "Iran"))
     
   }
 ))
