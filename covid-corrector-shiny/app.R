@@ -116,8 +116,8 @@ server <- function(input, output) {
     
     output$dr_plot <- renderPlotly({
         covid_cor$compare_deathrates(active_country = input$act_country, reference_country = input$ref_country) %>% 
-            plot_ly(x = ~date, y = ~dr_ref, type = "scatter", mode = "lines+markers", color = I("grey"), name = paste0("Death Rate (", input$ref_country, ")")) %>% 
-            add_trace(x = ~date, y = ~dr_act, type = "scatter", mode = "lines+markers", color = I("red"), name = paste0("Death Rate (", input$act_country, ")")) %>% 
+            plot_ly(x = ~date, y = ~dr_ref, type = "scatter", mode = "lines+markers", color = I("grey"), name = input$ref_country) %>% 
+            add_trace(x = ~date, y = ~dr_act, type = "scatter", mode = "lines+markers", color = I("red"), name = input$act_country) %>% 
             layout(title = list(text = paste0("Death Rate Comparison: ", input$act_country, " & ", input$ref_country)), yaxis = list(title = "Death Rate"), xaxis = list(title = "Date"), showlegend = F)
     })
     
